@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>علي ميهوب — محرر فيديو ومصمم بصري بالذكاء الاصطناعي | Video Editor &amp; AI Visual Creator</title>
+  <meta name="description" content="محرر فيديو ومصمم بصري بالذكاء الاصطناعي بخبرة 5 سنوات في المونتاج و2 سنة في توليد الفيديو بالـ AI. لديك فكرة؟ دعنا نقوم بها سوياً.">
+  <meta name="keywords" content="محرر فيديو, مونتير, ذكاء اصطناعي, ريلز, موشن غرافيك, عيادات, دكاترة, بريمير برو, كاب كات, دافينشي, علي ميهوب, Alimaihoub">
+  <meta name="theme-color" content="#080808">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:title" content="علي ميهوب — محرر فيديو ومصمم بصري بالذكاء الاصطناعي">
+  <meta property="og:description" content="لديك فكرة؟ دعنا نقوم بها سوياً. خبرة 5 سنوات في المونتاج وسنتين في الذكاء الاصطناعي التوليدي.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/projects/project1.svg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><circle cx='16' cy='16' r='6' fill='%23ff3838'/></svg>">
+
+  <!-- Google Fonts (Cairo & Tajawal for Arabic, JetBrains Mono for Timecode) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Ali Maihoub (علي ميهوب)",
+    "jobTitle": "Video Editor & AI Visual Creator",
+    "description": "محرر فيديو ومصمم بصري بالذكاء الاصطناعي. خبرة 5 سنوات في بريمير برو وسنتين في صناعة الفيديو بالذكاء الاصطناعي، متخصص في الريلز السينمائية والمحتوى الطبي والتجاري.",
+    "telephone": "+963993138824",
+    "sameAs": [
+      "https://www.instagram.com/dralimaihoub?srtk=MXgzODkyenY3bm8xaw==",
+      "https://t.me/Alimaihoub"
+    ]
+  }
+  </script>
+</head>
+<body class="cinemascope-active">
+
+  <!-- CinemaScope 2.39:1 Letterbox Overlays -->
+  <div class="cinema-letterbox top" aria-hidden="true"></div>
+  <div class="cinema-letterbox bottom" aria-hidden="true"></div>
+
+  <!-- Film Grain Canvas Overlay -->
+  <canvas id="grainCanvas" aria-hidden="true"></canvas>
+
+  <!-- Custom Cinematic Viewfinder Cursor -->
+  <div class="custom-cursor" aria-hidden="true"></div>
+  <div class="cursor-follower" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       STUDIO TOP METADATA & CONTROL BAR
+       ========================================================================== -->
+  <aside class="top-bar" aria-label="شريط الحالة والتحكم السينمائي">
+    <div class="top-bar-left">
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        <span>متاح للمشاريع الجديدة — Q1/Q2</span>
+      </div>
+      <span class="smpte-timecode" title="عداد التايم كود السينمائي الحي (24fps)">00:14:22:18</span>
+    </div>
+
+    <div class="top-bar-center">
+      <button class="top-control-btn active" id="cinemaScopeToggle" title="تبديل نمط السينما 2.39:1 (زر C)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/></svg>
+        <span id="cinemaScopeBadge">2.39:1 سينما [مفعّل]</span>
+      </button>
+
+      <button class="top-control-btn" id="ambientSoundToggle" title="تبديل المؤثرات الصوتية (زر M)">
+        <div class="audio-waves" aria-hidden="true">
+          <div class="audio-wave-bar"></div>
+          <div class="audio-wave-bar"></div>
+          <div class="audio-wave-bar"></div>
+          <div class="audio-wave-bar"></div>
+        </div>
+        <span>المؤثرات الصوتية</span>
+      </button>
+
+      <button class="top-control-btn active" id="grainToggle" title="تبديل حبيبات الفيلم التناظري 35mm">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="12" cy="19" r="1"/><circle cx="12" cy="5" r="1"/></svg>
+        <span>حبيبات 35mm</span>
+      </button>
+    </div>
+
+    <div class="top-bar-right">
+      <span style="font-weight:700; color:var(--text-primary);">استوديو المونتاج / 24.000 FPS</span>
+      <span style="color:var(--accent-rec); font-weight:800;">● تسجيل 4K</span>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN NAVIGATION
+       ========================================================================== -->
+  <header>
+    <nav class="main-nav" aria-label="القائمة الرئيسية">
+      <a href="#hero" class="nav-brand" aria-label="الصفحة الرئيسية">
+        <div class="brand-mark" aria-hidden="true">AM</div>
+        <div class="brand-info">
+          <span class="brand-name">علي ميهوب</span>
+          <span class="brand-role">محرر فيديو ومصمم بصري بالـ AI</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero" class="nav-link">البداية</a></li>
+        <li><a href="#about" class="nav-link">معلومات عني</a></li>
+        <li><a href="#projects" class="nav-link">معرض الأعمال</a></li>
+        <li><a href="#technology" class="nav-link">البرمجيات والأدوات</a></li>
+        <li><a href="#contact" class="nav-link">تواصل معي</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="btn-nav-whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>واتساب مباشر</span>
+        </a>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="تبديل القائمة" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <ul class="mobile-drawer-links">
+      <li><a href="#hero" class="mobile-drawer-link">01 // البداية</a></li>
+      <li><a href="#about" class="mobile-drawer-link">02 // معلومات عني</a></li>
+      <li><a href="#projects" class="mobile-drawer-link">03 // معرض الأعمال</a></li>
+      <li><a href="#technology" class="mobile-drawer-link">04 // البرمجيات والأدوات</a></li>
+      <li><a href="#contact" class="mobile-drawer-link">05 // تواصل معي</a></li>
+    </ul>
+
+    <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
+      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:1.25rem;">
+        "أنا لا أقوم فقط بمونتاج الفيديو.. بل أحوّل الأفكار إلى تجارب بصرية."
+      </p>
+      <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero" style="width:100%; justify-content:center;">
+        تواصل عبر واتساب (+963993138824)
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         01. HERO SECTION — البداية
+         ========================================================================== -->
+    <section id="hero" class="hero-section" aria-label="الواجهة الافتتاحية">
+      <!-- خلفية جزيئات الضوء -->
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero-container">
+        <!-- الوسوم العلوية -->
+        <div class="hero-top-meta">
+          <div class="meta-badge highlight">
+            <span class="rec-blinker"></span>
+            <span>محرر فيديو ومصمم بصري بالذكاء الاصطناعي</span>
+          </div>
+          <div class="meta-badge">
+            <span>خبرة 5 سنوات بالمونتاج</span>
+          </div>
+          <div class="meta-badge">
+            <span>خبرة سنتين بالـ AI Video Generation</span>
+          </div>
+          <div class="meta-badge">
+            <span style="color:var(--accent-cyan); direction:ltr;" class="ltr-text">Premiere Pro • CapCut • DaVinci</span>
+          </div>
+        </div>
+
+        <!-- شريط الشعار -->
+        <div class="hero-tagline-bar">
+          <div class="tagline-rule"></div>
+          <span class="tagline-text">رؤيتك الإبداعية.. وتنفيذي السينمائي</span>
+        </div>
+
+        <!-- العنوان الرئيسي المطلوب نصاً -->
+        <h1 class="hero-headline">
+          لديك فكرة ؟<br>
+          <span class="text-silver-gradient">دعنا نقوم بها</span><br>
+          سوياً.
+        </h1>
+
+        <!-- النص الداعم -->
+        <p class="hero-supporting-text">
+          أقوم بتحويل الأفكار والسيناريوهات إلى تجارب بصرية سينمائية استثنائية. من الريلز السريعة على هيئة أفلام قصيرة، إلى مونتاج وموشن غرافيك العيادات والأطباء، وتصميم القصص الكاملة وتوليدها بالذكاء الاصطناعي من الفكرة وحتى الإخراج النهائي.
+        </p>
+
+        <!-- أزرار الإجراء السريع -->
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">
+            <span>استكشف معرض الأعمال</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+
+          <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>تحدث معي عبر واتساب</span>
+          </a>
+
+          <a href="#about" class="btn-secondary">
+            <span>معلومات عني</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02. ABOUT ME — معلومات عني (النقاط الخمس المحددة)
+         ========================================================================== -->
+    <section id="about" class="about-section" aria-label="معلومات عني">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-index-tag">02 // الملف الشخصي والخبرات</span>
+          <h2 class="section-title">معلومات عني.</h2>
+          <p class="section-subtitle">
+            خلاصة خبرتي في المونتاج السينمائي والذكاء الاصطناعي التوليدي، مع التركيز على أعلى معايير الجودة والإتقان:
+          </p>
+        </div>
+
+        <!-- شبكة بطاقات المعلومات الخمس -->
+        <div class="about-pillars-grid">
+          
+          <!-- بطاقة 1: خبرة 5 سنين بريمير برو و كاب كات و دافينشي -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+              </div>
+              <span class="pillar-badge">المونتاج الاحترافي NLE</span>
+              <h3 class="pillar-title">خبرة 5 سنوات Premiere Pro</h3>
+              <p class="pillar-desc">
+                أنا خبرة خمس سنين في <strong>Adobe Premiere Pro</strong>، وبشتغل على <strong>CapCut</strong> أو <strong>DaVinci Resolve</strong> عند متطلبات المشروع لتسليم عمل بأعلى دقة وتلوين سينمائي.
+              </p>
+            </div>
+            <div class="pillar-tags">
+              <span class="pillar-tag-chip">Adobe Premiere Pro</span>
+              <span class="pillar-tag-chip">DaVinci Resolve</span>
+              <span class="pillar-tag-chip">CapCut</span>
+            </div>
+          </div>
+
+          <!-- بطاقة 2: خبرة سنتين بـ AI Video Generation -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <span class="pillar-badge">الجيل القادم من الفيديو</span>
+              <h3 class="pillar-title">خبرة سنتين بـ AI Video Generation</h3>
+              <p class="pillar-desc">
+                سنتان من التخصص العميق في أدوات توليد الفيديو بالذكاء الاصطناعي (Omni, Seedance, Higgsfield) لصناعة مشاهد وعوالم بصرية سينمائية متطورة كانت مستحيلة التنفيذ بالطرق التقليدية.
+              </p>
+            </div>
+            <div class="pillar-tags">
+              <span class="pillar-tag-chip">Omni AI</span>
+              <span class="pillar-tag-chip">Seedance</span>
+              <span class="pillar-tag-chip">Higgsfield</span>
+            </div>
+          </div>
+
+          <!-- بطاقة 3: مشتغل كتير ريلز لاكتر من بيج عالانستا عشكل افلام قصيرة -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <span class="pillar-badge">صناعة المحتوى عالي التفاعل</span>
+              <h3 class="pillar-title">ريلز إنستغرام كأفلام قصيرة</h3>
+              <p class="pillar-desc">
+                مشتغل كتير ريلز لأكتر من بيج عالإنستا ع شكل <strong>أفلام قصيرة</strong> تتميز بإيقاع سينمائي مشدود، حبكة بصرية تجذب المشاهد في الثواني الأولى، وانتقالات سلسة تضمن أعلى معدل وصول وتفاعل.
+              </p>
+            </div>
+            <div class="pillar-tags">
+              <span class="pillar-tag-chip">Instagram Reels</span>
+              <span class="pillar-tag-chip">Short Film Style</span>
+              <span class="pillar-tag-chip">Hook Psychology</span>
+            </div>
+          </div>
+
+          <!-- بطاقة 4: مونتاج وموشن غرافيك لعيادات ودكاترة -->
+          <div class="pillar-card">
+            <div>
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <span class="pillar-badge">المجال الطبي والتجاري</span>
+              <h3 class="pillar-title">مونتاج وموشن غرافيك لعيادات ودكاترة</h3>
+              <p class="pillar-desc">
+                إنتاج فيديوهات وموشن غرافيك احترافي مخصص للأطباء، العيادات، والمراكز الطبية؛ يركز على بناء الثقة والمصداقية مع المرضى بأسلوب راقٍ وواضح يخدم أهداف العيادة التسويقية.
+              </p>
+            </div>
+            <div class="pillar-tags">
+              <span class="pillar-tag-chip">عيادات وأطباء</span>
+              <span class="pillar-tag-chip">موشن غرافيك طبي</span>
+              <span class="pillar-tag-chip">بناء الثقة والمصداقية</span>
+            </div>
+          </div>
+
+          <!-- بطاقة 5: تصميم قصص بالـ AI وبناء محور كامل وتحريكا واضافة التعليق الصوتي -->
+          <div class="pillar-card" style="grid-column: 1 / -1;">
+            <div>
+              <div class="pillar-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="pillar-badge">الإنتاج القصصي الشامل</span>
+              <h3 class="pillar-title">تصميم قصص متكاملة بالـ AI (بناء، تحريك، تعليق صوتي)</h3>
+              <p class="pillar-desc">
+                تصميم قصص متكاملة بالذكاء الاصطناعي بدءاً من <strong>بناء المحور والسيناريو الكامل</strong>، وتوليد المشاهد والشخصيات المتطابقة، وتحريكها ديناميكياً، وإضافة <strong>التعليق الصوتي المناسب والمؤثرات الصوتية الكاملة</strong> لتسليم قصة بصرية جاهزة للنشر والتأثير.
+              </p>
+            </div>
+            <div class="pillar-tags">
+              <span class="pillar-tag-chip">بناء المحور والقصة</span>
+              <span class="pillar-tag-chip">تحريك المشاهد والشخصيات</span>
+              <span class="pillar-tag-chip">هندسة وتعليق صوتي كامل</span>
+              <span class="pillar-tag-chip">تسليم متكامل من الصفر</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- الشعار التوضيحي -->
+        <div class="about-statement-banner">
+          <div>
+            <p class="statement-text">
+              "أنا لا أقوم فقط بمونتاج الفيديو.. بل أحوّل أفكارك إلى تجارب بصرية تعلق في الذاكرة."
+            </p>
+            <p class="statement-sub">
+              الجمع بين صرامة التقطيع الكلاسيكي وسحر الذكاء الاصطناعي التوليدي.
+            </p>
+          </div>
+          <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="btn-primary" style="white-space:nowrap;">
+            ابدأ مشروعك الآن
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. FEATURED PROJECTS — معرض الأعمال (مع ميزة فتح الرابط عند الضغط)
+         ========================================================================== -->
+    <section id="projects" class="projects-section" aria-label="معرض الأعمال المختارة">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-index-tag">03 // معرض الأعمال الحقيقية</span>
+          <h2 class="section-title">الأعمال المختارة.</h2>
+          <p class="section-subtitle">
+            نماذج من أعمالي المنشورة. اضغط على أي فيديو أو على زر مشاهدة الرابط لفتح الفيديو مباشرة على إنستغرام:
+          </p>
+        </div>
+
+        <div class="projects-gallery">
+          
+          <!-- المشروع 1: فيلم آكشن سينمائي -->
+          <article class="project-card">
+            <!-- الضغط على الميديا أو زر التشغيل يفتح الرابط مباشرة -->
+            <div class="project-media-wrapper" data-target-url="https://www.instagram.com/reel/DX8vQO1o3Mn/" title="اضغط لفتح الفيديو مباشرة على إنستغرام">
+              <img src="assets/projects/project1.svg" alt="فيلم آكشن سينمائي — مونتاج وخدع بصرية" class="project-poster-img" loading="lazy">
+              
+              <div class="project-media-overlay">
+                <div class="project-media-hud-top">
+                  <span class="project-category-badge">مونتاج سينمائي / VFX / ذكاء اصطناعي</span>
+                  <span class="project-tc-badge">TC 00:01:24:18</span>
+                </div>
+
+                <div class="project-center-play" aria-label="تشغيل ومشاهدة على إنستغرام">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+
+                <div class="project-media-hud-bottom">
+                  <span class="project-click-hint">اضغط للمشاهدة على إنستغرام ↗</span>
+                  <span style="font-family:var(--font-mono); font-size:11px; color:#fff; direction:ltr;">4K CINEMA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <div>
+                <span class="project-id-tag">مشروع 01 // إنتاج سينمائي مركب</span>
+                <h3 class="project-title">فيلم آكشن سينمائي</h3>
+                <p class="project-description">
+                  عمل سينمائي قصير يجمع بين المونتاج المتقدم، محاكاة إطلاق النار الواقعي، دمج الحشود بالذكاء الاصطناعي، والتركيب البصري والمعالجة الصوتية.
+                </p>
+              </div>
+
+              <div class="project-actions-row">
+                <!-- زر فتح الرابط المباشر -->
+                <a href="https://www.instagram.com/reel/DX8vQO1o3Mn/" target="_blank" rel="noopener noreferrer" class="btn-open-target-reel">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>مشاهدة الفيديو على إنستغرام</span>
+                </a>
+
+                <!-- زر عرض التفاصيل والتقنيات -->
+                <button type="button" class="btn-project-specs" data-theater-trigger="01">
+                  <span>تفاصيل العمل</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- المشروع 2: الانتقالات السلسة -->
+          <article class="project-card">
+            <div class="project-media-wrapper" data-target-url="https://www.instagram.com/reel/DP9mbQ7jApq/" title="اضغط لفتح الفيديو مباشرة على إنستغرام">
+              <img src="assets/projects/project2.svg" alt="الانتقالات السلسة — ريلز سينمائي وانتقالات متدفقة" class="project-poster-img" loading="lazy">
+              
+              <div class="project-media-overlay">
+                <div class="project-media-hud-top">
+                  <span class="project-category-badge">ريلز سينمائي / انتقالات متدفقة</span>
+                  <span class="project-tc-badge">TC 00:00:45:12</span>
+                </div>
+
+                <div class="project-center-play" aria-label="تشغيل ومشاهدة على إنستغرام">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+
+                <div class="project-media-hud-bottom">
+                  <span class="project-click-hint">اضغط للمشاهدة على إنستغرام ↗</span>
+                  <span style="font-family:var(--font-mono); font-size:11px; color:#fff; direction:ltr;">60 FPS FLOW</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <div>
+                <span class="project-id-tag">مشروع 02 // انسيابية بصرية واحتفاظ</span>
+                <h3 class="project-title">الانتقالات السلسة (Seamless Transitions)</h3>
+                <p class="project-description">
+                  فيديو قصير يستعرض انتقالات متناسقة بدون انقطاع، وانسيابية بصرية مريحة للعين، مع تحريك نصوص مخصصة وإيقاع مدروس لشد الانتباه.
+                </p>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://www.instagram.com/reel/DP9mbQ7jApq/" target="_blank" rel="noopener noreferrer" class="btn-open-target-reel">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>مشاهدة الفيديو على إنستغرام</span>
+                </a>
+
+                <button type="button" class="btn-project-specs" data-theater-trigger="02">
+                  <span>تفاصيل العمل</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- المشروع 3: التايبوغرافي والهندسة الصوتية -->
+          <article class="project-card">
+            <div class="project-media-wrapper" data-target-url="https://www.instagram.com/reel/DYOak1IsOOJ/" title="اضغط لفتح الفيديو مباشرة على إنستغرام">
+              <img src="assets/projects/project3.svg" alt="التايبوغرافي والهندسة الصوتية — SFX وKinetic Typography" class="project-poster-img" loading="lazy">
+              
+              <div class="project-media-overlay">
+                <div class="project-media-hud-top">
+                  <span class="project-category-badge">تايبوغرافي حركي / هندسة صوتية</span>
+                  <span class="project-tc-badge">TC 00:00:32:08</span>
+                </div>
+
+                <div class="project-center-play" aria-label="تشغيل ومشاهدة على إنستغرام">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+
+                <div class="project-media-hud-bottom">
+                  <span class="project-click-hint">اضغط للمشاهدة على إنستغرام ↗</span>
+                  <span style="font-family:var(--font-mono); font-size:11px; color:#fff; direction:ltr;">SFX MASTER</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <div>
+                <span class="project-id-tag">مشروع 03 // مزامنة صوتية بصرية دقيقة</span>
+                <h3 class="project-title">التايبوغرافي والهندسة الصوتية</h3>
+                <p class="project-description">
+                  فيديو إبداعي يركز على مزامنة النصوص المتحركة بدقة أجزاء الثانية مع مؤثرات صوتية احترافية وطبقات صوت سينمائية عميقة ومؤثرة.
+                </p>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://www.instagram.com/reel/DYOak1IsOOJ/" target="_blank" rel="noopener noreferrer" class="btn-open-target-reel">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>مشاهدة الفيديو على إنستغرام</span>
+                </a>
+
+                <button type="button" class="btn-project-specs" data-theater-trigger="03">
+                  <span>تفاصيل العمل</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- المشروع 4: موشن غرافيك تجاري -->
+          <article class="project-card">
+            <div class="project-media-wrapper" data-target-url="https://www.instagram.com/reel/DYIOkeVAJHG/" title="اضغط لفتح الفيديو مباشرة على إنستغرام">
+              <img src="assets/projects/project4.svg" alt="موشن غرافيك تجاري — تحريك وهوية" class="project-poster-img" loading="lazy">
+              
+              <div class="project-media-overlay">
+                <div class="project-media-hud-top">
+                  <span class="project-category-badge">موشن غرافيك / إعلانات تجارية</span>
+                  <span class="project-tc-badge">TC 00:01:10:04</span>
+                </div>
+
+                <div class="project-center-play" aria-label="تشغيل ومشاهدة على إنستغرام">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+
+                <div class="project-media-hud-bottom">
+                  <span class="project-click-hint">اضغط للمشاهدة على إنستغرام ↗</span>
+                  <span style="font-family:var(--font-mono); font-size:11px; color:#fff; direction:ltr;">COMMERCIAL</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-body">
+              <div>
+                <span class="project-id-tag">مشروع 04 // تحريك وهوية علامة تجارية</span>
+                <h3 class="project-title">موشن غرافيك تجاري</h3>
+                <p class="project-description">
+                  مشروع موشن غرافيك مخصص تم تنفيذه لعميل تجاري، يوضح دقة التحريك، وسلاسة توصيل الرسالة البصرية، والمرونة الإبداعية في تلبية الهوية.
+                </p>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://www.instagram.com/reel/DYIOkeVAJHG/" target="_blank" rel="noopener noreferrer" class="btn-open-target-reel">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span>مشاهدة الفيديو على إنستغرام</span>
+                </a>
+
+                <button type="button" class="btn-project-specs" data-theater-trigger="04">
+                  <span>تفاصيل العمل</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04. SOFTWARE & TECHNOLOGY — الأدوات والبرمجيات
+         ========================================================================== -->
+    <section id="technology" class="technology-section" aria-label="البرمجيات وأدوات العمل">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-index-tag">04 // بيئة العمل والإنتاج</span>
+          <h2 class="section-title">SOFTWARE &amp; TECHNOLOGY.</h2>
+          <p class="section-subtitle">
+            مزيج احترافي متكامل بين خبرة 5 سنوات في أقوى برامج المونتاج العالمية، وسنتين في أحدث منصات توليد الفيديو بالذكاء الاصطناعي:
+          </p>
+        </div>
+
+        <div class="tech-split-grid">
+          
+          <!-- العمود الأول: برامج المونتاج (5 سنوات) -->
+          <div class="tech-column">
+            <div class="tech-column-header">
+              <span class="tech-col-badge">برامج المونتاج الاحترافية</span>
+              <h3 class="tech-col-title">حزمة المونتاج والبوست برودكشن</h3>
+              <p class="tech-col-experience">5 سنوات من الممارسة والخبرة العملية</p>
+            </div>
+
+            <div class="tech-tools-list">
+              <!-- Adobe Premiere Pro -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/premiere.svg" alt="Adobe Premiere Pro Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">Adobe Premiere Pro</h4>
+                    <span class="tool-pill">البرنامج الأساسي • 5 سنوات</span>
+                  </div>
+                  <p class="tool-desc">
+                    البرنامج الرئيسي المعتمد لدي لخمس سنوات في المونتاج المتقدم، ضبط الإيقاع، التقطيع المتعدد، وتسليم النسخ النهائية.
+                  </p>
+                </div>
+              </div>
+
+              <!-- DaVinci Resolve -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/davinci.svg" alt="DaVinci Resolve Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">DaVinci Resolve</h4>
+                    <span class="tool-pill">حسب متطلبات المشروع</span>
+                  </div>
+                  <p class="tool-desc">
+                    أعمل عليه عند طلب تصحيح وتدريج الألوان السينمائي والإنهاء البصري الدقيق.
+                  </p>
+                </div>
+              </div>
+
+              <!-- CapCut -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/capcut.svg" alt="CapCut Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">CapCut</h4>
+                    <span class="tool-pill">حسب الطلب والسرعة</span>
+                  </div>
+                  <p class="tool-desc">
+                    أعمل عليه عند الحاجة لريلز سريعة، تريندات التيك توك وإنستغرام، والتسليم العاجل.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- العمود الثاني: أدوات الذكاء الاصطناعي (سنتان) -->
+          <div class="tech-column">
+            <div class="tech-column-header">
+              <span class="tech-col-badge">الذكاء الاصطناعي التوليدي</span>
+              <h3 class="tech-col-title">أدوات توليد الفيديو بالـ AI</h3>
+              <p class="tech-col-experience">سنتان من التخصص في الـ Generative Video</p>
+            </div>
+
+            <div class="tech-tools-list">
+              <!-- Omni -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/omni.svg" alt="Omni AI Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">Omni</h4>
+                    <span class="tool-pill">توليد المشاهد العصبية</span>
+                  </div>
+                  <p class="tool-desc">
+                    توليد مشاهد وبيئات سينمائية وضبط مسارات وحركات الكاميرا المعقدة.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Seedance -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/seedance.svg" alt="Seedance Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">Seedance</h4>
+                    <span class="tool-pill">التحريك والحركة الديناميكية</span>
+                  </div>
+                  <p class="tool-desc">
+                    تحريك الشخصيات وتوليد الحركات الحركية المتناسقة والمشاهد التفاعلية.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Higgsfield -->
+              <div class="tool-item">
+                <div class="tool-logo-box">
+                  <img src="assets/software/higgsfield.svg" alt="Higgsfield Logo">
+                </div>
+                <div class="tool-details">
+                  <div class="tool-name-row">
+                    <h4 class="tool-name">Higgsfield</h4>
+                    <span class="tool-pill">واقعية سينمائية وفيزيائية</span>
+                  </div>
+                  <p class="tool-desc">
+                    محاكاة فيزيائية واقعية للضوء والحركة وتوليد مشاهد فائقة الدقة والجمالية.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. FINAL CONTACT & SOCIAL SECTION — تواصل معي
+         ========================================================================== -->
+    <section id="contact" class="contact-section" aria-label="بيانات التواصل">
+      <div class="contact-container">
+        <span class="contact-badge">جاهز للبدء بمشروعك</span>
+        
+        <h2 class="contact-headline">
+          لديك فكرة ؟<br>
+          <span style="color:#ffffff;">دعنا نقوم بها سوياً.</span>
+        </h2>
+
+        <p class="contact-supporting-text">
+          سواء كانت لديك فكرة أولية أو سيناريو جاهز، يسعدني مناقشة تفاصيل مشروعك وتحويله إلى تجربة بصرية سينمائية تستحق المشاهدة. تواصل معي مباشرة عبر القنوات التالية:
+        </p>
+
+        <!-- شبكة قنوات التواصل الحقيقية -->
+        <div class="contact-channels-grid">
+          
+          <!-- واتساب (WhatsApp) -->
+          <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="contact-channel-card whatsapp-card" title="تواصل عبر واتساب">
+            <div class="channel-icon" style="color:#25d366;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <span class="channel-title">واتساب (WhatsApp)</span>
+            <span class="channel-value">+963 993 138 824</span>
+            <span class="channel-action-hint">مراسلة مباشرة ↗</span>
+          </a>
+
+          <!-- تلغرام (Telegram) -->
+          <a href="https://t.me/Alimaihoub" target="_blank" rel="noopener noreferrer" class="contact-channel-card telegram-card" title="تواصل عبر تلغرام">
+            <div class="channel-icon" style="color:#229ed9;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </div>
+            <span class="channel-title">تلغرام (Telegram)</span>
+            <span class="channel-value">@Alimaihoub</span>
+            <span class="channel-action-hint ltr-text">+963984789728 ↗</span>
+          </a>
+
+          <!-- إنستغرام (Instagram) -->
+          <a href="https://www.instagram.com/dralimaihoub?srtk=MXgzODkyenY3bm8xaw==" target="_blank" rel="noopener noreferrer" class="contact-channel-card instagram-card" title="زيارة حساب إنستغرام">
+            <div class="channel-icon" style="color:#e1306c;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <span class="channel-title">إنستغرام (Instagram)</span>
+            <span class="channel-value">@dralimaihoub</span>
+            <span class="channel-action-hint">مشاهدة البروفايل والريلز ↗</span>
+          </a>
+
+        </div>
+
+        <!-- زر الإجراء الرئيسي -->
+        <a href="https://wa.me/963993138824" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:16px; padding:18px 44px; justify-content:center;">
+          <span>تواصل معي الآن لنبدأ العمل معاً</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="studio-footer" aria-label="تذييل الموقع">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">علي ميهوب — محرر فيديو ومصمم بصري بالذكاء الاصطناعي</span>
+        <span class="footer-tagline">رؤيتك الإبداعية.. وتنفيذي السينمائي — جميع الحقوق محفوظة</span>
+      </div>
+
+      <div class="footer-meta">
+        <p>PREMIERE PRO (5Y) • AI VIDEO GENERATION (2Y)</p>
+        <p style="margin-top:4px; color:rgba(255,255,255,0.4);">
+          اختصارات لوحة المفاتيح: <kbd>C</kbd> نمط السينما • <kbd>M</kbd> الصوت • <kbd>ESC</kbd> إغلاق
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       THEATER SPECS MODAL (نافذة تفاصيل العمل)
+       ========================================================================== -->
+  <div class="theater-modal" id="theaterModal" role="dialog" aria-modal="true" aria-labelledby="theaterTitle">
+    <div class="theater-dialog">
+      <button class="theater-close-btn" id="theaterCloseBtn" aria-label="إغلاق النافذة">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- صورة العمل السينمائية -->
+      <div class="theater-screen-col">
+        <img id="theaterPosterImg" src="assets/projects/project1.svg" alt="تفاصيل العمل">
+      </div>
+
+      <!-- تفاصيل العمل التقنية -->
+      <div class="theater-info-col">
+        <div>
+          <span class="theater-cat-pill" id="theaterCategory">مونتاج سينمائي</span>
+          <h3 class="theater-title" id="theaterTitle">عنوان المشروع</h3>
+          <p class="theater-desc" id="theaterDescription">وصف تفصيلي للعمل...</p>
+
+          <div class="theater-specs-list" id="theaterSpecsList">
+            <!-- يتم التعبئة بالجافاسكريبت -->
+          </div>
+        </div>
+
+        <div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" id="theaterOpenReelBtn" style="width:100%; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>مشاهدة الريلز الأصلية على إنستغرام</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- صندوق التنبيهات -->
+  <div id="systemToast" class="toast-box" aria-live="polite"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

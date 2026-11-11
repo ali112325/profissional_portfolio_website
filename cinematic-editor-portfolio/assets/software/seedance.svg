@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sdBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#190e24"/>
+      <stop offset="100%" stop-color="#07030a"/>
+    </linearGradient>
+    <linearGradient id="sdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7b00"/>
+      <stop offset="50%" stop-color="#ff007f"/>
+      <stop offset="100%" stop-color="#7928ca"/>
+    </linearGradient>
+    <filter id="sdGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#ff007f" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect x="2" y="2" width="76" height="76" rx="16" fill="url(#sdBg)" stroke="#33194a" stroke-width="2"/>
+  <g transform="translate(40, 40)" filter="url(#sdGlow)">
+    <!-- Seedance generative kinetic wave blossom -->
+    <path d="M0, -20 C10,-12 18,-2 18,10 C18,18 10,22 0,22 C-10,22 -18,18 -18,10 C-18,-2 -10,-12 0,-20 Z" fill="none" stroke="url(#sdGrad)" stroke-width="2.5"/>
+    <path d="M-12, -4 C-6, 4 6, 4 12, -4" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="0" cy="-6" r="4.5" fill="#ffffff"/>
+  </g>
+</svg>

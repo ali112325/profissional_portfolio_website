@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="100%" height="100%">
+  <defs>
+    <radialGradient id="dvCenter" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1c1c24"/>
+      <stop offset="100%" stop-color="#09090d"/>
+    </radialGradient>
+    <linearGradient id="dvRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff3366"/>
+      <stop offset="100%" stop-color="#990022"/>
+    </linearGradient>
+    <linearGradient id="dvGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e676"/>
+      <stop offset="100%" stop-color="#00693c"/>
+    </linearGradient>
+    <linearGradient id="dvBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00b0ff"/>
+      <stop offset="100%" stop-color="#003e8a"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="76" height="76" rx="16" fill="url(#dvCenter)" stroke="#2f2f3d" stroke-width="2"/>
+  <g transform="translate(40, 40) scale(0.95)">
+    <!-- 3 Petals of DaVinci Resolve -->
+    <path d="M0, -26 C12,-26 22,-16 22,-4 C22,6 12,12 0,0 C-12,12 -22,6 -22,-4 C-22,-16 -12,-26 0,-26 Z" fill="url(#dvRed)" opacity="0.9" transform="rotate(0)"/>
+    <path d="M0, -26 C12,-26 22,-16 22,-4 C22,6 12,12 0,0 C-12,12 -22,6 -22,-4 C-22,-16 -12,-26 0,-26 Z" fill="url(#dvGreen)" opacity="0.9" transform="rotate(120)"/>
+    <path d="M0, -26 C12,-26 22,-16 22,-4 C22,6 12,12 0,0 C-12,12 -22,6 -22,-4 C-22,-16 -12,-26 0,-26 Z" fill="url(#dvBlue)" opacity="0.9" transform="rotate(240)"/>
+    <circle cx="0" cy="0" r="4.5" fill="#ffffff" opacity="0.9"/>
+  </g>
+</svg>

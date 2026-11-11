@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="p4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c101c"/>
+      <stop offset="45%" stop-color="#070912"/>
+      <stop offset="100%" stop-color="#040408"/>
+    </linearGradient>
+    <radialGradient id="blueMotionGlow" cx="50%" cy="48%" r="48%">
+      <stop offset="0%" stop-color="#3a86ff" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#8338ec" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="metalWire" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#3a86ff"/>
+      <stop offset="100%" stop-color="#8338ec"/>
+    </linearGradient>
+    <filter id="p4Glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base Canvas -->
+  <rect width="1080" height="1350" fill="url(#p4Grad)"/>
+
+  <!-- Radial Motion Light -->
+  <circle cx="540" cy="560" r="420" fill="url(#blueMotionGlow)"/>
+
+  <!-- Geometric Motion Graphic Isometric Wireframe & Ribbons -->
+  <g transform="translate(540, 560)">
+    <!-- Isometric Cube 1 -->
+    <g stroke="url(#metalWire)" stroke-width="2.5" fill="none" opacity="0.85">
+      <!-- Top Face -->
+      <polygon points="0,-180 155,-90 0,0 -155,-90" fill="#3a86ff" fill-opacity="0.15"/>
+      <!-- Left Face -->
+      <polygon points="-155,-90 0,0 0,180 -155,90" fill="#0c101c" fill-opacity="0.6"/>
+      <!-- Right Face -->
+      <polygon points="0,0 155,-90 155,90 0,180" fill="#8338ec" fill-opacity="0.2"/>
+    </g>
+
+    <!-- Outer Kinetic Orbital Rings -->
+    <ellipse cx="0" cy="0" rx="320" ry="120" fill="none" stroke="#3a86ff" stroke-width="1.5" stroke-dasharray="16 8" transform="rotate(-25)"/>
+    <ellipse cx="0" cy="0" rx="280" ry="90" fill="none" stroke="#ffffff" stroke-width="1" stroke-dasharray="8 6" transform="rotate(35)"/>
+    
+    <!-- Dynamic Motion Vector Nodes -->
+    <circle cx="-160" cy="-60" r="6" fill="#3a86ff" filter="url(#p4Glow)"/>
+    <circle cx="180" cy="80" r="8" fill="#8338ec" filter="url(#p4Glow)"/>
+    <circle cx="0" cy="-180" r="7" fill="#ffffff" filter="url(#p4Glow)"/>
+    <circle cx="0" cy="180" r="5" fill="#3a86ff"/>
+  </g>
+
+  <!-- Keyframe Curve Graph HUD -->
+  <g transform="translate(240, 780)" opacity="0.6">
+    <line x1="0" y1="100" x2="600" y2="100" stroke="#334155" stroke-width="1"/>
+    <line x1="0" y1="0" x2="0" y2="100" stroke="#334155" stroke-width="1"/>
+    <!-- Bezier Ease-In-Out Curve -->
+    <path d="M0,100 C200,100 400,0 600,0" fill="none" stroke="#3a86ff" stroke-width="3"/>
+    <circle cx="0" cy="100" r="5" fill="#ffffff"/>
+    <circle cx="600" cy="0" r="5" fill="#3a86ff"/>
+    <text x="615" y="10" font-family="'SF Mono', monospace" font-size="14" fill="#3a86ff">EASE_CUBIC_BEZIER (0.25, 0.1, 0.25, 1.0)</text>
+  </g>
+
+  <!-- Viewfinder & Commercial HUD Info -->
+  <g font-family="-apple-system, 'SF Mono', 'JetBrains Mono', Consolas, monospace" font-size="22" fill="#e5e5e5" letter-spacing="2">
+    <circle cx="160" cy="165" r="8" fill="#3a86ff"/>
+    <text x="180" y="172" font-weight="700">COMMERCIAL PIPELINE ●</text>
+    <text x="160" y="210" opacity="0.6">MOTION ENGINE: 60 FPS RENDER</text>
+    <text x="160" y="240" opacity="0.6">SCALE: VECTOR RESOLUTION INDEPENDENT</text>
+
+    <text x="920" y="172" text-anchor="end" font-weight="700" fill="#3a86ff">TC 00:01:10:04</text>
+    <text x="920" y="210" text-anchor="end" opacity="0.6">COLOR: REC.709 ACCURATE</text>
+  </g>
+
+  <!-- Typography & Badges Overlay -->
+  <g transform="translate(140, 1020)">
+    <!-- Category Pill -->
+    <rect x="0" y="0" width="380" height="36" rx="6" fill="#141a29" stroke="#253554" stroke-width="1"/>
+    <text x="16" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#3a86ff" letter-spacing="2">MOTION GRAPHICS • COMMERCIAL</text>
+    
+    <!-- Project Title -->
+    <text x="0" y="85" font-family="'Syne', -apple-system, sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="-1">MOTION GRAPHICS</text>
+    
+    <!-- Subtitle / Meta -->
+    <text x="0" y="130" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="20" fill="#a0a0aa" letter-spacing="0.5">Custom Client Animation • Visual Communication • Brand Precision</text>
+    
+    <!-- Instagram Reel indicator -->
+    <g transform="translate(0, 160)">
+      <rect x="0" y="0" width="220" height="42" rx="21" fill="#ffffff"/>
+      <polygon points="26,14 26,28 38,21" fill="#080808"/>
+      <text x="48" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="800" fill="#080808" letter-spacing="1.5">WATCH REEL</text>
+    </g>
+  </g>
+
+  <!-- Scope Letterbox Lines -->
+  <rect x="0" y="0" width="1080" height="70" fill="#080808"/>
+  <rect x="0" y="1280" width="1080" height="70" fill="#080808"/>
+</svg>

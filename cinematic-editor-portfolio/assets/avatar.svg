@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141416"/>
+      <stop offset="50%" stop-color="#0a0a0c"/>
+      <stop offset="100%" stop-color="#050506"/>
+    </linearGradient>
+    <radialGradient id="rimLight" cx="65%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="40%" stop-color="#99aacc" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cyanFlare" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f5d4" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00f5d4" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#00f5d4" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Grid Pattern in background -->
+  <g stroke="#ffffff" stroke-width="0.5" opacity="0.08">
+    <line x1="80" y1="0" x2="80" y2="1000"/>
+    <line x1="200" y1="0" x2="200" y2="1000"/>
+    <line x1="400" y1="0" x2="400" y2="1000"/>
+    <line x1="600" y1="0" x2="600" y2="1000"/>
+    <line x1="720" y1="0" x2="720" y2="1000"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="600" x2="800" y2="600"/>
+    <line x1="0" y1="800" x2="800" y2="800"/>
+  </g>
+
+  <!-- Editorial Rim Light -->
+  <circle cx="500" cy="350" r="320" fill="url(#rimLight)"/>
+
+  <!-- Anamorphic Lens Streak -->
+  <rect x="0" y="380" width="800" height="2" fill="url(#cyanFlare)" filter="url(#softGlow)"/>
+
+  <!-- Stylized Studio Director Silhouette with Headphones & Monitor Glow -->
+  <g fill="#0e0f14">
+    <!-- Body / Shoulders -->
+    <path d="M160,1000 C160,780 230,700 320,680 L480,680 C570,700 640,780 640,1000 Z"/>
+    <!-- Neck -->
+    <rect x="360" y="560" width="80" height="140" fill="#0c0d12"/>
+    <!-- Head Base -->
+    <ellipse cx="400" cy="460" rx="90" ry="120" fill="#0f1017"/>
+    <!-- Professional Studio Headphones -->
+    <path d="M295,450 C290,320 510,320 505,450" fill="none" stroke="#252733" stroke-width="14" stroke-linecap="round"/>
+    <rect x="280" y="420" width="30" height="80" rx="12" fill="#1b1d28" stroke="#333748" stroke-width="2"/>
+    <rect x="490" y="420" width="30" height="80" rx="12" fill="#1b1d28" stroke="#333748" stroke-width="2"/>
+    <!-- Metallic Specular Edge on Headphone -->
+    <path d="M308,430 L308,490" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+    <path d="M492,430 L492,490" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  </g>
+
+  <!-- Cinema Viewfinder Elements -->
+  <g stroke="#ffffff" stroke-width="1.5" opacity="0.4">
+    <!-- Top Left Corner -->
+    <path d="M60,100 L60,60 L100,60" fill="none"/>
+    <!-- Top Right Corner -->
+    <path d="M700,60 L740,60 L740,100" fill="none"/>
+    <!-- Bottom Left Corner -->
+    <path d="M60,900 L60,940 L100,940" fill="none"/>
+    <!-- Bottom Right Corner -->
+    <path d="M700,940 L740,940 L740,900" fill="none"/>
+    <!-- Center Target Cross -->
+    <line x1="390" y1="460" x2="410" y2="460"/>
+    <line x1="400" y1="450" x2="400" y2="470"/>
+  </g>
+
+  <!-- Camera Metadata Stamps -->
+  <g font-family="-apple-system, 'SF Mono', 'JetBrains Mono', Consolas, monospace" font-size="14" fill="#a0a0aa" letter-spacing="1.5">
+    <text x="60" y="90">DIRECTOR / EDITOR FRAME</text>
+    <text x="60" y="120" fill="#00f5d4">● LIVE MONITORING</text>
+    <text x="740" y="90" text-anchor="end">2.39:1 CINEMATIC</text>
+    <text x="740" y="120" text-anchor="end">5Y NLE • 2Y AI PIPELINE</text>
+  </g>
+
+  <!-- Subtle Studio Badge at bottom -->
+  <g transform="translate(60, 870)">
+    <text font-family="'Syne', -apple-system, sans-serif" font-size="28" font-weight="900" fill="#ffffff" letter-spacing="1">STUDIO IDENTITY</text>
+    <text y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" fill="#71717a">CREATIVE EXECUTION • NO COMPROMISES</text>
+  </g>
+</svg>
